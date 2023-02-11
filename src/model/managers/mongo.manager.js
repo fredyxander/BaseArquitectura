@@ -1,3 +1,5 @@
+import {convertToDto} from "../dtos/user.dto.js";
+
 class MongoContainer{
     constructor(model){
         this.model = model;
@@ -7,7 +9,8 @@ class MongoContainer{
         try {
             const response = await this.model.findById(id);
             const data = JSON.parse(JSON.stringify(response)); //convertir a formato json
-            return data;
+            const responseDto = convertToDto(data);
+            return responseDto;
         } catch (error) {
             throw new Error(`Hubo un error ${error}`);
         }
@@ -17,7 +20,8 @@ class MongoContainer{
         try {
             const response = await this.model.find();
             const data = JSON.parse(JSON.stringify(response));
-            return data;
+            const responseDto = convertToDto(data);
+            return responseDto;
         } catch (error) {
             throw new Error(`Hubo un error ${error}`);
         }

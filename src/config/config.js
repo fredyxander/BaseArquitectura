@@ -21,6 +21,7 @@ export const options = {
         PORT: objArgs.port,
         MODE: objArgs.mode,
         NODE_ENV: objArgs.env,
+        dbType: process.env.DATABASE_TYPE || 'MONGO',
     },
     mongoDB: {
         mongoUrl:process.env.MONGO_URL
